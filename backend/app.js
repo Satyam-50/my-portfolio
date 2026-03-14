@@ -7,7 +7,8 @@ const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 
 const connectDB = require('./config/db');
-const apiRoutes = require('./routes');
+const contactRoutes = require('./routes/contactRoutes');
+const projectRoutes = require('./routes/projectRoutes');
 const notFound = require('./middleware/notFoundMiddleware');
 const { errorHandler } = require('./middleware/errorMiddleware');
 
@@ -58,7 +59,8 @@ app.get('/api/health', (req, res) => {
   res.status(200).json({ success: true, message: 'API is healthy' });
 });
 
-app.use('/api', apiRoutes);
+app.use('/api/contact', contactRoutes);
+app.use('/api/projects', projectRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
