@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap");
+@import "tailwindcss";
+
+/* Use class-based dark mode: add/remove .dark on <html> */
+@custom-variant dark (&:where(.dark, .dark *));
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --font-display: "Space Grotesk", "Segoe UI", sans-serif;
+  --font-body: "Space Grotesk", "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "Consolas", monospace;
+
+  --surface-base: #fffdf7;
+  --surface-soft: #f0f9ff;
+  --surface-float: rgba(255, 255, 255, 0.72);
+  --text-primary: #0f172a;
+  --text-muted: #4b5563;
+  --border-soft: rgba(15, 23, 42, 0.12);
+  --shadow-soft: 0 22px 52px -28px rgba(2, 132, 199, 0.36);
+}
+
+.dark {
+  --surface-base: #070c18;
+  --surface-soft: #061320;
+  --surface-float: rgba(8, 19, 36, 0.62);
+  --text-primary: #e2e8f0;
+  --text-muted: #94a3b8;
+  --border-soft: rgba(148, 163, 184, 0.22);
+  --shadow-soft: 0 24px 54px -28px rgba(8, 145, 178, 0.4);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background: var(--surface-base);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
