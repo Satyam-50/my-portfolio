@@ -4,11 +4,12 @@ const { sendContactNotification } = require('../services/emailService');
 
 const submitContact = asyncHandler(async (req, res) => {
 	const { name, email, subject, message } = req.body;
+	const resolvedSubject = subject?.trim() || 'Portfolio Contact Message';
 
 	const contact = await Contact.create({
 		name,
 		email,
-		subject,
+		subject: resolvedSubject,
 		message,
 	});
 

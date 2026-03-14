@@ -17,9 +17,8 @@ const contactValidationRules = [
     .normalizeEmail(),
 
   body('subject')
+    .optional({ checkFalsy: true })
     .trim()
-    .notEmpty()
-    .withMessage('Subject is required.')
     .isLength({ min: 2, max: 150 })
     .withMessage('Subject must be between 2 and 150 characters.'),
 

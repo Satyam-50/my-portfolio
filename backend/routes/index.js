@@ -5,6 +5,7 @@ const projectRoutes = require('./projectRoutes');
 
 const router = express.Router();
 
+router.use('/contact', contactRoutes);
 router.use('/contacts', contactRoutes);
 router.use('/projects', projectRoutes);
 

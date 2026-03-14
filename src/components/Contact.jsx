@@ -4,14 +4,18 @@ const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL ||
   "https://gentle-exploration-production-e24b.up.railway.app";
 
-const INITIAL_FORM = { name: "", email: "", message: "" };
+const INITIAL_FORM = {
+  name: "",
+  email: "",
+  message: "",
+};
 
 const INPUT_CLASS =
   "w-full rounded-xl border border-(--border-soft) bg-white/70 p-3.5 text-sm text-(--text-primary) outline-none transition focus:border-cyan-500 dark:bg-slate-950/60";
 
 export default function Contact() {
   const [form, setForm] = useState(INITIAL_FORM);
-  const [status, setStatus] = useState("idle"); // idle | loading | success | error
+  const [status, setStatus] = useState("idle");
   const [serverErrors, setServerErrors] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -46,6 +50,7 @@ export default function Contact() {
       setForm(INITIAL_FORM);
     } catch (err) {
       setStatus("error");
+
       if (err.data?.errors?.length) {
         setServerErrors(err.data.errors);
       } else {
@@ -80,8 +85,8 @@ export default function Contact() {
 
           {serverErrors.length > 0 && (
             <ul className="mt-6 space-y-1 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-600 dark:border-red-700 dark:bg-red-900/20 dark:text-red-400">
-              {serverErrors.map((e, i) => (
-                <li key={i}>{e.message}</li>
+              {serverErrors.map((error, index) => (
+                <li key={`${error.field}-${index}`}>{error.message}</li>
               ))}
             </ul>
           )}
@@ -106,6 +111,7 @@ export default function Contact() {
               required
               className={INPUT_CLASS}
             />
+
             <textarea
               rows="5"
               name="message"
@@ -114,7 +120,7 @@ export default function Contact() {
               onChange={handleChange}
               required
               className={INPUT_CLASS}
-            />
+            ></textarea>
 
             <button
               type="submit"
